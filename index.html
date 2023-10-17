@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html>
+<head>
+
+</head>
+<body>
+    <script>
+    // Create a new XMLHttpRequest object.
+    const xhr = new XMLHttpRequest();
+
+    // Open the API request.
+    xhr.open('GET', 'https://games.roblox.com/v1/games/6284583030/servers/0?sortOrder=2&excludeFullGames=false&limit=10');
+
+    // Set the request header.
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // Send the request.
+    xhr.send();
+
+    // Listen for the response.
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Success!
+        const response = JSON.parse(xhr.responseText);
+
+        // Append the response to the DOM element.
+        const responseElement = document.getElementById('response');
+        responseElement.innerHTML = JSON.stringify(response, null, 2);
+
+      } else {
+        // Error!
+        console.log(xhr.statusText);
+      }
+    };
+    </script>
+    <div id="response"></div>
+</body>
+</html>
